@@ -1,0 +1,328 @@
+<!--src/components/hote/HotelBooking.vue-->
+<template>
+      <div class="modal-content">
+        <el-select v-model="selectedContact" placeholder="选择联系人" style="width: 100px">
+          <el-option
+              v-for="contact in contactPeople"
+              :key="contact.contactId"
+              :label="contact.name"
+              :value="contact">
+          </el-option>
+        </el-select>
+        <div v-if="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+
+        <form @submit.prevent="submitBooking">
+          <div v-for="(form, index) in bookingForms" :key="index">
+          <div class="form-item">
+            <h4>用户姓名</h4>
+            <input v-model="form.customerName" type="text" placeholder="请输入用户姓名">
+          </div>
+
+          <div class="form-item">
+            <h4>身份证</h4>
+            <input v-model="form.identityCardNumber" type="text" placeholder="请输入身份证号码">
+          </div>
+
+          <div class="form-item">
+            <h4>联系电话</h4>
+            <input v-model="form.phoneNumber" type="text" placeholder="请输入联系电话">
+          </div>
+
+          <div class="form-item">
+            <h4>入店日期</h4>
+            <input v-model="form.checkInDate" type="date">
+          </div>
+          <div class="form-item">
+            <h4>离店日期</h4>
+            <input v-model="form.checkOutDate" type="date" >
+          </div>
+          <div class="form-item">
+            <h4>适用人群</h4>
+            <label>持中国身份证的居民，需持对应证件入住</label>
+          </div>
+
+          <div class="form-item1">
+            <h4>房间数量</h4>
+            <input v-model="form.roomNumber" type="number" placeholder="请输入房间数量" :min="1" > <label>剩余客房数量：</label><label>{{roomInfo.availableRooms }}</label>
+            价格
+            <p></p>
+          </div>
+            <button type="button" @click="addBookingForm">添加订单</button>
+            <button type="button" v-if="bookingForms.length > 1" @click="removeBookingForm(index)">移除订单</button>
+          </div>
+
+          <button type="submit" class="submit-button">
+            提交预订
+          </button>
+        </form>
+      </div>
+
+</template>
+
+<script setup>
+import { ref, onMounted, computed,watch } from 'vue';
+import { useRoute, useRouter} from 'vue-router';
+import {submitBookingRequest,fetchContactPeople6,fetchHotel} from "../../api/hotel";
+
+import { ElMessage } from 'element-plus';
+
+import { useUserStore } from '../../stores/userStore';
+
+const router = useRouter()
+
+const errorMessage = ref('');  // 用于存储和显示错误信息
+const userStore = useUserStore();
+
+
+const contactPeople = ref([]);
+const selectedContact = ref(null);
+
+// 创建空白订单表单
+function createEmptyBookingForm() {
+  return {
+    userId: userInfo.id,
+    roomTypeId: '',
+    hotelId: '',
+    identityCardNumber: '',
+    customerName: '',
+    phoneNumber: '',
+    hotelName: '',
+    checkInDate: new Date().toISOString().split('T')[0],
+    checkOutDate: new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split('T')[0],
+    roomNumber: 1,
+    totalPrice: 0,
+    numberOfGuests: 1,
+  };
+}
+
+// 添加新订单表单
+const addBookingForm = () => {
+  bookingForms.value.push(createEmptyBookingForm());
+};
+
+
+// 移除订单表单
+const removeBookingForm = (index) => {
+  bookingForms.value.splice(index, 1);
+};
+
+
+
+const calculateTotalPrice = (form) => {
+  return form.roomNumber * roomInfo.value.discountPrice;
+};
+
+
+// 处理响应
+const handleResponse = (response) => {
+  // 根据响应处理成功或失败逻辑
+};
+
+// 错误处理
+const handleError = (error) => {
+  ElMessage({
+    message: '预订出错，请稍后再试',
+    type: 'error',
+    duration: 1000,
+  });
+};
+
+onMounted(async () => {
+  // 初始加载逻辑，如加载联系人等
+});
+
+watch(selectedContact, (newContact) => {
+  // 更新选中的联系人信息到最新的订单表单
+  if (newContact && bookingForms.value.length > 0) {
+    let lastForm = bookingForms.value[bookingForms.value.length - 1];
+    lastForm.customerName = newContact.name;
+    lastForm.identityCardNumber = newContact.identityCardNumber;
+    lastForm.phoneNumber = newContact.phoneNumber;
+  }
+});
+// 访问用户信息和 token
+const userInfo = userStore.userInfo;
+
+console.log('userInfo',userInfo)
+
+const token = userStore.token;
+const roomInfo = ref({});
+const hotel = ref({}); //酒店信息
+
+
+const route = useRoute();
+const showModal = ref(true);
+
+
+
+const bookingForms = ref([{
+  // 初始的订单表单结构
+  userId: '',
+  roomTypeId: '',
+  hotelId: '',
+  identityCardNumber: '',
+  customerName: '',
+  phoneNumber: '',
+  hotelName: '',
+  checkInDate: new Date().toISOString().split('T')[0],
+  checkOutDate: new Date(new Date().setDate(new Date().getDate() + 1)).toISOString().split('T')[0],
+  roomNumber: 1,
+  totalPrice: 0,
+  numberOfGuests: 1,
+}]);
+
+
+
+onMounted(async () => {
+  const response = await fetchContactPeople6(userInfo.id);
+  contactPeople.value = response.data;
+  console.log('contactPeople', contactPeople.value);
+
+  if (route.query.room) {
+    roomInfo.value = JSON.parse(route.query.room);
+
+    console.log(route.query)
+    console.log(roomInfo.value)
+    bookingForms.value.forEach(form => {
+      form.hotelName = route.query.hotelName;
+      form.userId = userInfo.id;
+      form.hotelId = roomInfo.value.hotelId;
+      form.roomTypeId = roomInfo.value.roomTypeId;
+      form.Price = roomInfo.value.discountPrice;
+    });
+
+    console.log('roomInfo.value', roomInfo.value);
+  }
+});
+
+const submitBooking = async () => {
+  bookingForms.value.forEach(form => {
+    form.hotelName = route.query.hotelName;
+    form.userId = userInfo.id;
+    form.hotelId = roomInfo.value.hotelId;
+    form.roomTypeId = roomInfo.value.roomTypeId;
+    form.Price = roomInfo.value.discountPrice;
+  });
+  // 验证每个订单表单是否有效
+  let allFormsValid = bookingForms.value.every(form => {
+    // 您可以根据具体的验证逻辑来调整这里
+    return form.identityCardNumber && form.customerName && form.phoneNumber;
+  });
+
+  if (!allFormsValid) {
+    ElMessage({
+      message: '请填写所有必要的信息',
+      type: 'error',
+      duration: 1000,
+    });
+    return;
+  }
+console.log('所有订单',bookingForms.value)
+  try {
+    // 遍历并提交每个订单
+    for (let form of bookingForms.value) {
+
+      //const response = await submitBookingRequest(form);
+      console.log('预订结果:', response.data.data);
+
+      ElMessage({
+        message: response.data.message,
+        type: 'success',
+        duration: 1000,
+      });
+
+      if (response.data.message === '成功') {
+        // 处理成功响应，例如跳转到订单页面
+        router.push({
+          name: 'order',
+          query: { bookingData: JSON.stringify(response.data.data) }
+        });
+      }
+    }
+  } catch (error) {
+    console.error('预订出错:', error);
+    ElMessage({
+      message: '预订出错，请稍后再试',
+      type: 'error',
+      duration: 1000,
+    });
+  }
+};
+
+</script>
+
+
+
+<style scoped>
+.container {
+  padding: 20px;
+}
+
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.error-message {
+  color: red;
+  font-size: 20px;
+}
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+}
+
+/*
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+*/
+
+.form-item {
+  margin-bottom: 10px;
+}
+.form-item1 {
+  margin-bottom: 10px;
+  display: flex;
+}
+
+label {
+  margin-bottom: 5px;
+  display: block;
+}
+
+.submit-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
+</style>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>求职者注册表单</title>
+</head>
+<body>
+<h1>求职者注册表单</h1>
+<form action="demo2.html" method="post">
+    <div>
+        <label>求职者姓名：</label>
+        <input type="text" name="name" placeholder="请填写真实姓名">
+    </div>
+    <div>
+        <label>性别：</label>
+        <label><input type="radio" name="gender" value="男" required> 男</label>
+        <label><input type="radio" name="gender" value="女" required> 女</label>
+    </div>
+    <div>
+        <label>邮箱：</label>
+        <input type="email" name="email" pattern="" required>
+    </div>
+    <div>
+        <label>年龄:</label>
+        <input type="text" name="age" pattern="" required>
+    </div>
+
+    <div>
+        <label>手机号：</label>
+        <input type="tel"name="phone" pattern="" required>
+    </div>
+    <div>
+        <label>毕业时间：</label>
+        <input type="date" name="date" required>
+    </div>
+    <div>
+        <label >最高学位：</label>
+        <select name="job" required>
+            <option value="" disabled selected>请选择学位</option>
+            <option value="本科">本科</option>
+            <option value="硕士">硕士</option>
+            <option value="博士">博士</option>
+        </select>
+    </div>
+    <div>
+        <label>期望城市：</label>
+        <label><input type="checkbox" name="city" value="张家界">张家界</label>
+        <label><input type="checkbox" name="city" value="吉首"> 吉首</label>
+        <label><input type="checkbox" name="city" value="北京"> 北京</label>
+    </div>
+    <div>
+        <label>个人简历：</label>
+        <input type="file" name="resume" required>
+    </div>
+    <button type="submit">提交</button>
+</form>
+</body>
+</html>
+
+
+
+​

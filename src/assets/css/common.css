@@ -1,0 +1,115 @@
+/* 先删除默认的内外边距 */
+* {
+    margin: 0;
+    padding: 0;
+}
+/* 默认html的font-size是16px，即1rem=16px 
+rem就是将根节点html的font-size的值作为整个页面的基准尺寸*/
+html {
+    font-size: 62.5%;  /* 设置过根节点的文字大小后，所有子节点的文字大小全部相对于根节点计算，html为10px */
+    /* 根节点指的是html标签，设置html标签的大小，其他的元素相关尺寸设置用rem，
+    这样，所有元素都有了统一的参照标准，改变html文字的大小，就会改变所有元素用rem设置的尺寸大小。 */
+  }
+
+body, input, button, a, textarea, select {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+    font-size: 1.4rem;
+    color: #333;
+  }
+  a,
+  u,
+  s {
+    text-decoration: none;
+    color: #333;
+  }
+  a:hover, a:focus {
+    text-decoration: none;
+  }
+  a:hover {
+    filter: alpha(opacity=90);
+    opacity: .9;
+  }
+  ol, ul {
+    list-style: none;
+}
+  input button select {
+    outline: none;
+  }
+  fieldset, img, iframe {
+    border: 0;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  i, em {
+    font-style: normal;
+  }
+  
+  label {
+    font-weight: normal;
+  }
+  
+  h2, h3, h4, p, dl, dt, dd {
+    margin: 0;
+    padding: 0;
+  }
+  img {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body, input, button, a, textarea, select, dl, ul, ol, li, h2, h3, h4, p, dl, dt, dd, span, div {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+  /* css3过渡动画效果 */
+  .trans {
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+  
+  /* 文本对齐 */
+  .fn-textcenter {
+    text-align: center;
+    }
+    .fn-textright {
+        text-align: right;
+    }
+    .fn-textleft {
+        text-align: left;
+    }
+
+  /* 去掉浏览器focus默认外边框 */
+  a:focus, button:focus, input:focus {
+    outline: none;
+  }
+  
+  /* 单行文字溢出省略号 */
+  .ell {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: keep-all;
+    word-wrap: normal;
+  }
+  
+  /* 清理浮动 */
+  .fn-clear {
+    zoom: 1;
+    /* for IE6 IE7 */
+  }
+  .fn-clear:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }

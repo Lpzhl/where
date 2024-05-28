@@ -1,0 +1,259 @@
+/* 左侧导航栏 */
+.aside {
+    width: 200px;
+}
+.aside-list {
+    position: fixed;
+    left: 0;
+    width: 200px;
+}
+.aside .el-menu {
+    height:100vh;
+}
+.common-layout {
+    display: flex;
+}
+
+main.el-main {
+    margin-left: 200px;
+}
+.main-content {
+    flex: 1; /* 占据剩余空间 */
+}
+
+.carousel-container {
+    flex-basis: 20%; /* 根据需求调整宽度 */
+    height: 600px; /* 根据需求调整高度 */
+}
+/* 字体图标的样式 */
+.aside i {
+    font-size: 24px;
+    font-weight: 500;
+    margin-right: 5px;
+}
+.aside .el-radio-button__inner {
+    border:none;
+    font-size: 20px;
+}
+
+/* 页面头部 */
+.el-header {
+    min-width: 1280px;
+}
+.headerNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    width:1200px;
+    position:fixed;
+    top:0;
+    background-color: #fff;
+    z-index: 999;
+    padding: 10px 0;
+}
+.headerNav img {
+    width: 100%;
+    height: 60px;
+}
+.header-search {
+    flex: 1;
+    margin: 0 2rem;
+}
+/* 按钮的颜色  */
+.headerNav .el-input-group__append {
+    background-color: var(--el-color-primary);
+    color: #fff;
+}
+.heaer-right .el-link {
+    margin: 0 20px;
+}
+/* 伪类选择器：可以用来选取获得焦点的元素
+当鼠标移入上去后取消黑色边框 */
+.el-dropdown-link:focus{
+   outline: none;
+}
+/* 右侧下面展示 */
+.el-main {
+    min-width: 1280px;
+    overflow: hidden;
+}
+/* 区域展示部分 */
+.searchlist {
+    width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(5,auto);
+    margin-top: 65px
+}
+.searchlist-item {
+    border: 1px solid #dadada;
+    margin-left: -1px;
+}
+/* 目的地/酒店名称 */
+.search-box {
+    padding: 8px 12px;
+}
+.search-box label {
+    color: #999;
+    display: block;
+}
+.search-box input {
+    border:none;
+    font-size: 16px;
+    font-weight: 700;
+    padding-top: 10px;
+}
+/* 伪类选择器，当元素获得焦点的时候，能够控制父元素的样式 */
+.searchlist-item:focus-within {
+    border-bottom: 2px solid var(--el-color-primary);
+}
+/* 入住时间/退房时间 取消边框的颜色 */
+.search-box .el-date-editor.el-input__wrapper {
+    box-shadow:none;
+}
+.search-box .el-date-editor.el-input__wrapper:hover {
+    box-shadow:none;
+}
+/* 搜索按导的样式 */
+.searchlist-item .el-button {
+    width: 100%;
+    height:100%;
+    border-radius: 0;
+}
+.searchlist-item .el-button .el-icon {
+    font-size: 20px;
+}
+
+/* topfilter开始  */
+.topfilter {
+    width: 1200px;
+    display:grid;
+    grid-template-columns: 104px 1fr;
+    grid-template-rows:repeat(3,auto);
+    box-shadow: 0 2px 4px rgba(0, 0, 25, 0.5);
+}
+.topfilter>div {
+    border-bottom:1px solid #ddd;
+    padding: 1rem 2rem;
+}
+.topfilter h4 {
+    line-height: 4rem;
+    text-align: center;
+}
+.topfilter .el-button:hover {
+    background-color: var(--el-color-primary);
+    border: 1px solid var(--el-color-primary);
+}
+/* 按钮的间距： */
+.topfilter .el-button {
+    margin: 5px;
+}
+/* 高级筛选 */
+.topfilter-filter .el-dropdown {
+    margin: 10px 15px;
+}
+/* 推荐酒店 */
+.recommend {
+    width:1200px;
+    display:flex;
+    gap: 0 20px;
+    padding: 10px 0;
+}
+.recommend-left {
+    width: 780px;
+}
+.recommend-right {
+    width: 400px;
+}
+.banner {
+    width: 400px;
+    height: 620px;
+}
+/* 轮播图 */
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.recommend-list ul li {
+    display: flex;
+    background-color: #F4F6F9;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.list-left {
+    flex: 2;
+    display: flex;
+}
+.list-right {
+    flex: 1;
+    border-left: 1px solid #ddd;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/* 图片的大小 */
+.list-left-img {
+    flex: 1;
+}
+.list-left-img img {
+    width: 100%;
+    height: 100%;
+}
+.list-left-title {
+    flex: 3;
+    margin-left: 10px;
+}
+/* 标题 */
+.list-left-tagandtitle {
+    font-size: 18px;
+    line-height: 24px;
+    display: flex;
+    margin-bottom: 8px;
+    align-items: center;
+}
+.list-left-tagandtitle img {
+    height: 18px;
+    width: auto;
+    margin: 0 10px;
+}
+.badge-thumb {
+    background:url(@/assets/images/help.png) no-repeat;
+    width: 16px;
+    height: 16px;
+}
+.list-left-transport {
+    margin-bottom: 8px;
+}
+.list-left-tag .el-tag {
+    margin: 3px;
+}
+.list-right-comment {
+    display:flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+}
+.list-right-describe p {
+    color: var(--el-color-primary);
+    font-size:16px;
+    font-weight: 700;
+}
+.list-right-describe a {
+    color: #999;
+    font-size: 10px;
+}
+.list-right-score {
+    background-color: var(--el-color-primary);
+    color: #fff;
+    border-radius: 4px;
+    padding: 5px;
+    font-size: 18px;
+    font-weight: 700;
+    margin-left: 5px;
+}
+.list-right-price p {
+    color: var(--el-color-primary);
+    font-size:20px;
+    font-weight: 700;
+}
