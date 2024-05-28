@@ -1,25 +1,28 @@
 // src/api/login.js
 import axios from 'axios';
+import { useUserStore } from '../stores/userStore';
+import {getToken} from "../utils/token-utils";
 
-const API_URL = 'http://localhost:8088/user';
-let token;
+const API_URL = 'http://localhost:8089/user';
+let token = null;
 
-//登录逻辑
+
+
+token = getToken()  //获取token
+ // 登录
 export const login = async (email, password) => {
-    console.log('account',email)
-    console.log('password',password)
-        const response = await axios.post(`${API_URL}/login`, {
-            email,
-            password,
-        });
-        console.log('接口',response.data.code)
-        if (response.data.code === 200) {
-            // 登录成功
-            return response;
-        } else {
-            // 登录失败，处理错误
-          return response;
-        }
+    const response = await axios.post(`${API_URL}/login`, { email, password });
+    if (response.data.code === 200) {
+        const userStore = useUserStore();
+        userStore.setToken(response.data.data.token);
+        userStore.setUser(response.data.data.user);
+        // 将 token 保存到 localStorage
+        localStorage.setItem('token', response.data.data.token);
+        return response;
+    } else {
+        // 登录失败，
+        return response;
+    }
 };
 
 // 获取用户信息
@@ -34,6 +37,40 @@ export const getUserInfo = async (token) => {
     console.log('token登录的信息：',response)
     return response;
 };
+
+// 获取所有用户信息
+export const getAllUsers = async (userId) => {
+    try {
+        const response = await axios.get(`${API_URL}/getRoleInfo`, { params: { userId: userId } });
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        return null;
+    }
+};
+
+
+// 获取角色权限信息
+export const getUserPermissions = async (userId) => {
+    try {
+        const response = await axios.get(`${API_URL}/permissions`, { params: { userId: userId } });
+        return response.data;
+    } catch (error) {
+        console.error('获取角色权限失败:', error);
+        return null;
+    }
+};
+
+
+
+
+// 添加联系人
+export const add = async (newContact, userId) => {
+    return await axios.post(`${API_URL}/addContact?userId=${userId}`, newContact);
+}
+
+
+
 
 
 // 发送验证码逻辑

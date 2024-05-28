@@ -3,47 +3,73 @@
   <div>
     <header>
       <div class="menu">
-        <h2 class="toppp">去哪儿の小破站</h2>
+        <h2 class="toppp">廖梓行の小破站</h2>
         <ul class="menu-list">
-          <li v-for="item in menuItems" :key="item" class="menu-item">
-            <router-link :to="item === '首页' ? '/' : `/${displayItem(item)}`" class="menu-link">{{  item.toLowerCase()}}</router-link>
+          <li
+              v-for="item in menuItems"
+              :key="item"
+              :class="{ 'selected': selectedItem === item }"
+              class="menu-item"
+              @click="selectMenuItem(item)"
+          >
+            <router-link
+                :to="item === '首页' ? '/' : `/${displayItem(item)}`"
+                class="menu-link"
+            >
+              {{ item.toLowerCase() }}
+            </router-link>
           </li>
         </ul>
-        <div class="user-info" @mouseover="showLoginButton = true" @mouseleave="showLoginButton = false">
-          <div class="user-avatar-container">
-            <img :src="'src/assets/image/' + userAvatar" alt="User Avatar" class="user-avatar" @mouseover="rotateAvatar" @mouseleave="resetAvatar" />
-            <div v-if="isUserLoggedIn">
-              <div class="button-column">
-                <button @click="navigateToProfile" class="login-button">个人主页</button>
-                <button @click="logout" class="login-button">退出</button>
-                <br>
-              </div>
-            </div>
-            <div v-else>
-              <button @click="navigateToLogin" class="login-button">登录</button>
-            </div>
+        <el-popover
+            trigger="hover"
+            placement="bottom"
+            v-model:visible="showLoginButton"
+            class="popover-left-shift"
+        >
+          <template #reference>
+            <el-avatar :src="userAvatar" @mouseover="rotateAvatar" @mouseleave="resetAvatar" class="user-avatar"></el-avatar>
+          </template>
+
+          <div class="vertical-buttons" v-if="isUserLoggedIn">
+            <el-button type="text" @click="navigateToProfile">个人主页</el-button>
+            <el-button type="text" @click="logout">退出</el-button>
           </div>
-        </div>
+          <div class="vertical-buttons" v-else>
+            <el-button type="text" @click="navigateToLogin">登录</el-button>
+          </div>
+        </el-popover>
       </div>
     </header>
+
     <router-view></router-view>
+
+
   </div>
 </template>
 
 <script setup>
+import { ElPopover, ElAvatar, ElButton } from 'element-plus';
 import { ref, provide, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { getToken, removeToken } from './utils/token-utils.ts';
+import { useUserStore } from './stores/userStore';
 import { getUserInfo } from './api/login.js';
+import FlightBooking from "./components/Menu/FlightBooking/FlightBooking.vue";
+
+const userStore = useUserStore();
 
 const userAvatar = ref('刘洋老婆.jpg');
 const router = useRouter();
 
 const menuItems = ["首页", "机票", "酒店", "火车票", "百宝箱", "攻略", "关于我们"];
 const showLoginButton = ref(false);
+const selectedItem = ref(null);
 
+const selectMenuItem = (item) => {
+  selectedItem.value = item;
+};
 const displayItem = (item) => {
-  const englishNames = ["Home", "Records", "Likes", "Travel", "Treasure", "Messages", "AboutUs"];
+  const englishNames = ["Home", "AirTicket", "Hote", "TrainTicket", "Treasure", "Messages", "AboutUs"];
   const index = menuItems.indexOf(item);
   return index !== -1 ? englishNames[index] : item;
 };
@@ -58,19 +84,20 @@ if (token) {
   // 在这里可以调用后端接口验证token的有效性，获取用户信息
   // 如果token有效，根据获取到的用户信息自动登录
   getUserInfo(token).then((userInfoResponse) => {
-        console.log('userInfoResponse',userInfoResponse)
-        console.log(userInfoResponse.data)
-        if (userInfoResponse.data.code === 200) {
-          // 获取用户信息成功
-          const user = userInfoResponse.data.data.loginUser; // 用户信息在data字段中
-          userAvatar.value = user.avatar;
-          setUserLoggedIn();
+    console.log('userInfoResponse',userInfoResponse)
+    console.log(userInfoResponse.data)
+    if (userInfoResponse.data.code === 200) {
+      // 获取用户信息成功
+      const user = userInfoResponse.data.data.loginUser; // 用户信息在data字段中
+      userAvatar.value = user.avatar;
+      console.log(userAvatar.value)
+      setUserLoggedIn();
 
-          router.push('/AboutUs');
-        } else {
-          // 获取用户信息失败
-        }
-      })
+      //router.push('/AboutUs');
+    } else {
+      // 获取用户信息失败
+    }
+  })
       .catch((error) => {
         // 获取用户信息请求出错
       });
@@ -106,12 +133,15 @@ const navigateToLogin = () => {
 
 const navigateToProfile = () => {
   // 添加导航到用户个人主页的逻辑
-  // router.push({ path: '/profile' });
+  router.push({ path: '/order' });
 };
-
+if (typeof global === 'undefined') {
+  window.global = window;
+}
 const logout = () => {
   setUserLoggedOut();
   removeToken(token);
+  userStore.clearUser();
   userAvatar.value = '刘洋老婆.jpg';
   router.push({ path: '/' });
 };
@@ -121,39 +151,52 @@ const logout = () => {
 
 
 <style scoped>
-
-.background-image {
+.selected {
+  border-bottom: 2px solid yellow;
+}
+/*.background-image {
   background-image: url('src/assets/image/图片2.jpg');
   background-size: cover;
   background-position: center;
-  position: fixed; /* 让背景图片固定在视口中 */
+  position: fixed; !* 让背景图片固定在视口中 *!
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1; /* 将背景图片放在最底层，以确保其他内容在上面 */
-}
+  z-index: -1; !* 将背景图片放在最底层，以确保其他内容在上面 *!
+}*/
 .toppp{
   color: #fff;
   font-size: 30px;
   margin-right: 600px;
 }
 .menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; /* 可以调整为你需要的宽度 */
+  z-index: 1000; /* 根据需要调整 */
   list-style: none;
   padding: 0;
   margin: 0;
-  background-color: transparent; /* 初始状态下透明 */
   display: flex;
   justify-content: flex-end;
   align-items: center;
   height: 80px; /* 菜单高度 */
   transition: background-color 0.3s; /* 添加过渡效果 */
-
-}
-
-header:hover {
   background-color: rgba(0, 0, 0, 0.7); /* 鼠标悬停时的背景颜色 */
 }
+
+
+.vertical-buttons {
+/*  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 10px;*/
+}
+/*header:hover {
+  background-color: rgba(0, 0, 0, 0.7); !* 鼠标悬停时的背景颜色 *!
+}*/
 
 .menu-list {
   display: flex;
@@ -208,6 +251,7 @@ header:hover {
   top: 50px; /* 根据需要调整按钮位置 */
   left: 40%; /* 将按钮置于头像正下方 */
   transform: translateX(-50%); /* 居中按钮 */
+  z-index: 1;
 }
 .button-column {
   display: flex;

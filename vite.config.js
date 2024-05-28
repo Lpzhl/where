@@ -1,23 +1,22 @@
-import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
-// https://vitejs.dev/config/
-export default defineConfig(
-    () => {
-      return{
-        plugins: [vue()],
-/*        // 这个不用一点点写, 但每个配置都要理解
-        server: {
-          port: 8001,
-          open: true,
-          proxy: {
-            '/app-dev': {
-              target: 'http://localhost:8088/',
-              changeOrigin: true,
-              rewrite: (path) => path.replace(/^\/app-dev/, '')
-            }
-          }
-        }*/
-      }
-    }
-)
+export default defineConfig({
+    plugins: [
+        vue(),
+        AutoImport({
+            resolvers: [ElementPlusResolver()],
+        }),
+        Components({
+            resolvers: [ElementPlusResolver()],
+        }),
+    ],
+    define: {
+        'global': 'window'
+    },
+
+
+});
