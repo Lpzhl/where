@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { useUserStore } from '../stores/userStore';
 
-const API_URL = 'http://localhost:8089/chat';
+const API_URL = 'http://localhost:8088/chat';
 
 // 获取指定用户的所有聊天信息
 export const getChatMessagesByUserId = async (userId) => {

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useUserStore } from '../stores/userStore';
 import {getToken} from "../utils/token-utils";
 
-const API_URL = 'http://localhost:8089/user';
+const API_URL = 'http://localhost:8088/user';
 let token = null;
 
 

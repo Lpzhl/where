@@ -1,7 +1,7 @@
 // src/api/review.js
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8089/review';
+const API_URL = 'http://localhost:8088/review';
 
 /**
  * 回复
