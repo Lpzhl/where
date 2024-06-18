@@ -24,6 +24,7 @@ import AirOrder from "../components/order/airOrder.vue";
 import HelloWorld from "../components/HelloWorld.vue";
 import hotel from "../components/manger/hotel.vue";
 import testweb from "../components/test/testwebsocket.vue"
+import charts from "../components/echats/AllCharts.vue"
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -39,7 +40,12 @@ const router = createRouter({
             component: Hotedetails,
             props: true
         },
-        { path: '/', component:testweb },
+        {
+            path: '/hotel-booking',
+            name: '图表统计',
+            component: () => import('../components/echats/AllCharts.vue')
+        },
+        { path: '/', component:charts },
         { path: '/login', component: Login },
         { path: '/register', component: Register },
         { path: '/find-password', component: FindPassword },
@@ -112,6 +118,11 @@ const router = createRouter({
                     path: '/hotelManger',
                     name: 'hotelManger',
                     component: () => import("../components/manger/HotelManagement.vue")
+                },
+                {
+                    path: '/allorderEchats',
+                    name: 'allorderEchats',
+                    component: () => import("../components/echats/AllCharts.vue")
                 },
                 {
                     path: '/hotelRoomManger',
