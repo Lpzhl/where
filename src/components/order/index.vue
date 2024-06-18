@@ -6,7 +6,6 @@
           个人主页
         </h1>
         <el-sub-menu  v-if="userInfo.isMerchant===0&&userInfo.roleId===0" index="1">
-
           <template #title >我的订单</template>
           <el-menu-item-group>
             <el-menu-item index="1-1" @click="goToAirOrders">机票订单</el-menu-item>
@@ -23,6 +22,8 @@
               <el-menu-item index="7-1" @click="goToMangerHotel">酒店管理</el-menu-item>
               <el-menu-item index="7-2" @click="goToMangerRoom">房间管理</el-menu-item>
               <el-menu-item index="7-3" @click="goToMangerOrder">订单管理</el-menu-item>
+              <el-menu-item v-if="userInfo.roleId" index="7-3" @click="goToAllOrder">销售额查看</el-menu-item>
+              <el-menu-item v-else index="7-3" @click="goToHotelOrder">酒店销售额查看</el-menu-item>
             </el-menu-item-group>
           </el-sub-menu>
         </template>
@@ -79,7 +80,7 @@ const userStore = useUserStore()
 
 const userInfo = computed(() => userStore.userInfo)
 
-console.log(userInfo.value)
+console.log('用户信息',userInfo.value)
 
 import { getUserPermissions } from '../../api/login';
 
@@ -95,7 +96,6 @@ const permissionActions = {
   '管理用户': () => router.push({ name: 'userManger' }),
   '查看订单': () => router.push({ name: 'orderManger' }),
   '审核酒店入驻': () => router.push({ name: 'MangeShen' }),
-
 };
 
 
@@ -119,6 +119,24 @@ const goToMangerOrder = () =>{
     }
   })
 }
+const goToAllOrder = () =>{
+  router.push({
+    name : 'allorderEchats',
+    query: {
+
+    }
+  })
+}
+
+const goToHotelOrder = () =>{
+  router.push({
+    name : 'hotelEchats',
+    query: {
+
+    }
+  })
+}
+
 const goToMangerHotel = () =>{
   router.push({
     name : 'hotelManger',
