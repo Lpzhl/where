@@ -6,6 +6,13 @@ import {getToken} from "../utils/token-utils";
 const API_URL = 'http://localhost:8088/user';
 let token = null;
 
+export const updateProfile = (userId, profileData) => {
+    return axios.put(`${API_URL}/upload/${userId}`, profileData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        }
+    });
+};
 
 
 token = getToken()  //获取token
@@ -68,7 +75,6 @@ export const getUserPermissions = async (userId) => {
 export const add = async (newContact, userId) => {
     return await axios.post(`${API_URL}/addContact?userId=${userId}`, newContact);
 }
-
 
 
 
@@ -181,5 +187,7 @@ export const resetPassword = async (email, newPassword, verificationCode) => {
         console.error('重置密码时发生错误:', error);
     }
 };
+
+
 
 
