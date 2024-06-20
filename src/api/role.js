@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useUserStore } from '../stores/userStore';
 
-const API_URL = 'http://localhost:8088/role';
+const API_URL = 'http://121.41.107.127:8088/role';
 
 // 移除角色
 export const removeUserRole = async (userId,roleId) =>{

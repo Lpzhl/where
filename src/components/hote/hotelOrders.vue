@@ -84,7 +84,7 @@ let webSocket = null;
 
 // 初始化WebSocket连接
 const initWebSocket = () => {
-  webSocket = new WebSocket('ws://localhost:8088/websocket');
+  webSocket = new WebSocket('ws://121.41.107.127:8088/websocket');
 
   webSocket.onopen = function() {
     console.log('WebSocket Connected');
@@ -116,7 +116,7 @@ const initWebSocket = () => {
 const buy = () => {
   /*setTimeout(() => {*/
   const orderType = 'hotel'; // 'hotel' 或 'flight'
-    window.open(`http://localhost:8088/alipay/pay?orderName=${bookingData.value.hotelName}&orderId=${bookingData.value.bookingId}&totalPrice=${bookingData.value.totalPrice}&orderType=${orderType}`);
+    window.open(`http://121.41.107.127:8088/alipay/pay?orderName=${bookingData.value.hotelName}&orderId=${bookingData.value.bookingId}&totalPrice=${bookingData.value.totalPrice}&orderType=${orderType}`);
     window.close()
 /*  }, 2000);*/
 };

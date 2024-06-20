@@ -65,7 +65,7 @@ const submitPayment = () => {
   console.log('支付方式:', paymentMethod.value);
   console.log('支付金额:', totalAmount);
   const orderType = 'flight'; // 'hotel' 或 'flight'
-  window.open(`http://localhost:8088/alipay/pay?orderName=${bookingData.value.arrivalAirport}&orderId=${bookingData.value.bookingId}&totalPrice=${bookingData.value.totalPrice}&orderType=${orderType}`);
+  window.open(`http://121.41.107.127:8088/alipay/pay?orderName=${bookingData.value.arrivalAirport}&orderId=${bookingData.value.bookingId}&totalPrice=${bookingData.value.totalPrice}&orderType=${orderType}`);
 };
 onBeforeMount(()=>{
   if(route.query.booking) {

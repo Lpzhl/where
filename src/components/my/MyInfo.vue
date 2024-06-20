@@ -71,11 +71,11 @@
 
 <script setup>
 import { ElContainer, ElRow, ElCol, ElAvatar, ElButton, ElTable, ElTableColumn, ElUpload } from 'element-plus';
-import { computed, onMounted, ref } from 'vue';
+import {computed, inject, onMounted, ref} from 'vue';
 import { useUserStore } from '../../stores/userStore';
-import { add, updatePro
-  file } from "../../api/login";
+import { add, updateProfile } from "../../api/login";
 import { fetchContactPeople6 } from "../../api/hotel";
+const updateUserAvatar = inject('updateUserAvatar');
 
 const userStore = useUserStore();
 const userInfo = ref({
@@ -123,10 +123,10 @@ const submitProfile = async () => {
     formData.append('nickname', editProfileForm.value.nickname);
 
     const response = await updateProfile(userId, formData);
-
-    console.log(response);
     userInfo.value.user.nickname = editProfileForm.value.nickname;
-    userInfo.value.user.avatar = response.data;
+    userInfo.value.user.avatar = response.data.data;
+    updateUserAvatar(response.data.data);
+    userStore.setUser(userInfo.value.user)
   } catch (error) {
     console.error('更新失败:', error);
   }

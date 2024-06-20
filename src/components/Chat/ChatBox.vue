@@ -89,7 +89,7 @@ const pagedOrders = computed(() => {
 });
 
 const handleRowClick = (row) => {
-  newMessage.value = `http://localhost:8088/hotel/bookingId=${row.bookingId}`
+  newMessage.value = `http://121.41.107.127:8088/hotel/bookingId=${row.bookingId}`
   console.log(`订单号 ${row.bookingId} 已填充到消息中`);
 };
 
@@ -164,7 +164,7 @@ const formatTimestamp = (timestamp) => {
 
 onMounted(() => {
   // 建立 SockJS 连接
-  const socket = new SockJS('http://localhost:8088/websocket');
+  const socket = new SockJS('http://121.41.107.127:8088/websocket');
   stompClient = Stomp.over(socket);
   //  JWT 令牌存储在 localStorage 中
   const jwtToken = getToken();

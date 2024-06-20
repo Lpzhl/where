@@ -114,7 +114,7 @@ const flightChartOptions = ref({
 
 const fetchHotelData = async () => {
   try {
-    const response = await axios.get('http://localhost:8088/order/getOrderDetail')
+    const response = await axios.get('http://121.41.107.127:8088/order/getOrderDetail')
     const data = response.data.map(item => ({
       value: item.saleAmount,
       name: item.hotelName,
@@ -129,7 +129,7 @@ const fetchHotelData = async () => {
 
 const fetchFlightData = async () => {
   try {
-    const response = await axios.get('http://localhost:8088/order/getFlightOrderDetail')
+    const response = await axios.get('http://121.41.107.127:8088/order/getFlightOrderDetail')
     const data = response.data.map(item => ({
       value: item.flightTotalPrice,
       name: item.flightCompany,

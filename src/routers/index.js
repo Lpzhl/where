@@ -25,6 +25,7 @@ import HelloWorld from "../components/HelloWorld.vue";
 import hotel from "../components/manger/hotel.vue";
 import testweb from "../components/test/testwebsocket.vue"
 import charts from "../components/echats/AllCharts.vue"
+import hotelcharts from "../components/echats/hotelcharts.vue"
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -45,7 +46,7 @@ const router = createRouter({
             name: '图表统计',
             component: () => import('../components/echats/AllCharts.vue')
         },
-        { path: '/', component:charts },
+        { path: '/', component:Main },
         { path: '/login', component: Login },
         { path: '/register', component: Register },
         { path: '/find-password', component: FindPassword },
@@ -128,6 +129,11 @@ const router = createRouter({
                     path: '/hotelRoomManger',
                     name: 'hotelRoomManger',
                     component:()=>import("../components/manger/HotelRoomManger.vue")
+                },
+                {
+                    path: '/hotelcharts',
+                    name: 'hotelcharts',
+                    component: () => import("../components/echats/HotelCharts.vue")
                 },
                 {
                     path:'/hotelRoomDet',

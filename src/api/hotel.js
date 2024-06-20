@@ -1,8 +1,8 @@
 // src/api/hotel.js
 import axios from 'axios';
 
-/*const API_URL = 'http://localhost:8088/hotel';*/
-const API_URL = 'http://localhost:8088/hotel';
+/*const API_URL = 'http://121.41.107.127:8088/hotel';*/
+const API_URL = 'http://121.41.107.127:8088/hotel';
 
 export const getAllBookings = (userId, hotelId) => {
     return axios.get(`${API_URL}/hhbookings`, {

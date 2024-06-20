@@ -34,18 +34,18 @@ const router = useRouter();
 
 
 const items = ref([
-  { image: 'http://localhost:8088/resources/廖梓行.jpg', name: '国际大酒店' },
-  { image: 'http://localhost:8088/resources/廖梓行.jpg', name: '国际大酒店' },
-  { image: 'http://localhost:8088/resources/廖梓行.jpg', name: '国际大酒店' },
-  { image: 'http://localhost:8088/resources/廖梓行.jpg', name: '国际大酒店' },
-  { image: 'http://localhost:8088/resources/廖梓行.jpg', name: '国际大酒店' },
-  { image: 'http://localhost:8088/resources/廖梓行.jpg', name: '国际大酒店' },
-  { image: 'http://localhost:8088/resources/廖梓行.jpg', name: '国际大酒店' },
-  { image: 'http://localhost:8088/resources/廖梓行.jpg', name: '国际大酒店' },
-  { image: 'http://localhost:8088/resources/廖梓行.jpg', name: '国际大酒店' },
-  { image: 'http://localhost:8088/resources/廖梓行.jpg', name: '国际大酒店' },
-  { image: 'http://localhost:8088/resources/廖梓行.jpg', name: '国际大酒店' },
-  { image: 'http://localhost:8088/resources/廖梓行.jpg', name: '国际大酒店' },
+  { image: 'http://121.41.107.127:8088/resources/廖梓行.jpg', name: '国际大酒店' },
+  { image: 'http://121.41.107.127:8088/resources/廖梓行.jpg', name: '国际大酒店' },
+  { image: 'http://121.41.107.127:8088/resources/廖梓行.jpg', name: '国际大酒店' },
+  { image: 'http://121.41.107.127:8088/resources/廖梓行.jpg', name: '国际大酒店' },
+  { image: 'http://121.41.107.127:8088/resources/廖梓行.jpg', name: '国际大酒店' },
+  { image: 'http://121.41.107.127:8088/resources/廖梓行.jpg', name: '国际大酒店' },
+  { image: 'http://121.41.107.127:8088/resources/廖梓行.jpg', name: '国际大酒店' },
+  { image: 'http://121.41.107.127:8088/resources/廖梓行.jpg', name: '国际大酒店' },
+  { image: 'http://121.41.107.127:8088/resources/廖梓行.jpg', name: '国际大酒店' },
+  { image: 'http://121.41.107.127:8088/resources/廖梓行.jpg', name: '国际大酒店' },
+  { image: 'http://121.41.107.127:8088/resources/廖梓行.jpg', name: '国际大酒店' },
+  { image: 'http://121.41.107.127:8088/resources/廖梓行.jpg', name: '国际大酒店' },
 
 ]);
 const currentPage = ref(1);

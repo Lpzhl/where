@@ -155,7 +155,7 @@ const handleRemove = file => {
 const goToHotelDetails = (hotel) => {
   console.log('廖梓行', hotel);
   const hotelDataString = encodeURIComponent(JSON.stringify(hotel));
-  const url = `http://localhost:5173/#/hotel-details?hotelData=${hotelDataString}`;
+  const url = `http://121.41.107.127:5173/#/hotel-details?hotelData=${hotelDataString}`;
   window.open(url, '_blank');
 };
 */
@@ -200,7 +200,7 @@ const uploadImage = async (file) => {
   console.log( hotelId.value)
 
   try {
-    const response = await axios.post('http://localhost:8088/hotel/upload', formData, {
+    const response = await axios.post('http://121.41.107.127:8088/hotel/upload', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }

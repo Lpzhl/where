@@ -146,7 +146,7 @@ onMounted(async () => {
       console.log(roomInfo.value)
     }
   }else{
-    window.location = "http://localhost:5173/#/login";
+    window.location = "http://121.41.107.127:5173/#/login";
   }
 
 });

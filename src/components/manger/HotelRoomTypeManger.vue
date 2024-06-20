@@ -240,7 +240,7 @@ const uploadImage = async (file,roomTypeId) => {
   formData.append('file', file.raw);
   formData.append('roomType_id', roomTypeId.value);
   try {
-    const response = await axios.post('http://localhost:8088/hotel/uploadRoom', formData, {
+    const response = await axios.post('http://121.41.107.127:8088/hotel/uploadRoom', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }

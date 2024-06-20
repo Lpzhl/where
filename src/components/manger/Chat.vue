@@ -132,7 +132,7 @@ onMounted(() => {
   }
   getHotleByid(booking.value.hotelId);
   // 建立 SockJS 连接
-  const socket = new SockJS('http://localhost:8088/websocket');
+  const socket = new SockJS('http://121.41.107.127:8088/websocket');
   stompClient = Stomp.over(socket);
   //  JWT 令牌存储在 localStorage 中
   const jwtToken = getToken();

@@ -57,7 +57,6 @@
         </el-sub-menu>
 
 
-
       </el-menu>
     </el-aside>
     <el-main style="margin-left: 0px">
@@ -130,7 +129,7 @@ const goToAllOrder = () =>{
 
 const goToHotelOrder = () =>{
   router.push({
-    name : 'hotelEchats',
+    name : 'hotelcharts',
     query: {
 
     }
@@ -201,7 +200,6 @@ const goToAirOrders = () => {
 };
 
 onMounted(() => {
-
   fetchUserPermissions()
 })
 </script>

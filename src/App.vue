@@ -3,7 +3,7 @@
   <div>
     <header>
       <div class="menu">
-        <h2 class="toppp">廖梓行の小破站</h2>
+        <h2 class="toppp">の小破站</h2>
         <ul class="menu-list">
           <li
               v-for="item in menuItems"

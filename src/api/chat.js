@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { useUserStore } from '../stores/userStore';
 
-const API_URL = 'http://localhost:8088/chat';
+const API_URL = 'http://121.41.107.127:8088/chat';
 
 // 获取指定用户的所有聊天信息
 export const getChatMessagesByUserId = async (userId) => {
@@ -36,7 +36,7 @@ export const sendChatMessage = async (message) => {
 export const getHotelById = async (hotelId) => {
     console.log(hotelId)
     try {
-        const response = await axios.get(`http://localhost:8088/hotel/getHotelById`, { params: { hotelId } });
+        const response = await axios.get(`http://121.41.107.127:8088/hotel/getHotelById`, { params: { hotelId } });
         if (response) {
             console.log('酒店获取成功', response.data);
             return response.data;

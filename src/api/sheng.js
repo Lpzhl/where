@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8088/shengq';
+const API_URL = 'http://121.41.107.127:8088/shengq';
 
 export const shengq = (applicantId, formData) => {
     return axios.post(`${API_URL}/big`, {

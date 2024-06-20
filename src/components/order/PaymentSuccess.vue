@@ -18,7 +18,7 @@ export default {
     };
   },
   mounted() {
-    fetch("http://localhost:8088/alipay/payment-success" + window.location.search)
+    fetch("http://121.41.107.127:8088/alipay/payment-success" + window.location.search)
         .then(response => response.json())
         .then(data => {
           this.paymentInfo = data;

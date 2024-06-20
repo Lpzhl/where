@@ -130,7 +130,7 @@ const deleteOrder = async () => {
 
 const proceedToPayment = () => {
   const orderType = 'hotel';
-  window.open(`http://localhost:8088/alipay/pay?orderName=${orderData.value.hotelName}&orderId=${orderData.value.bookingId}&totalPrice=${orderData.value.totalPrice}&orderType=${orderType}`);
+  window.open(`http://121.41.107.127:8088/alipay/pay?orderName=${orderData.value.hotelName}&orderId=${orderData.value.bookingId}&totalPrice=${orderData.value.totalPrice}&orderType=${orderType}`);
 };
 
 

@@ -96,7 +96,7 @@ const leaveReview =() =>{
 
 const proceedToPayment =() =>{
   const orderType = 'flight'; // 'hotel' 或 'flight'
-  window.open(`http://localhost:8088/alipay/pay?orderName=${orderDetails.value.arrivalAirport}&orderId=${orderDetails.value.bookingId}&totalPrice=${orderDetails.value.totalPrice}&orderType=${orderType}`);
+  window.open(`http://121.41.107.127:8088/alipay/pay?orderName=${orderDetails.value.arrivalAirport}&orderId=${orderDetails.value.bookingId}&totalPrice=${orderDetails.value.totalPrice}&orderType=${orderType}`);
 }
 const update = async () => {
   const response = await getb(orderDetails.value.flightId,orderDetails.value.bookingId);

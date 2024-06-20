@@ -45,7 +45,7 @@ axios.interceptors.response.use(response => {
 }, error => {
     if (error.response && error.response.status === 401) {
         // 当状态码为 401 时，重定向到登录页面
-        window.location = "http://localhost:5173/#/login";
+        window.location = "http://121.41.107.127:5173/#/login";
 
     }
     return Promise.reject(error);

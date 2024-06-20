@@ -79,8 +79,8 @@ const userId = computed(() => route.query.id)
 console.log(userInfo.value)
 const activeIndex = ref('1')
 const allOrderData = ref([
-  { imageUrl: 'http://localhost:8088/resources/上海_云和夜泊酒店4.jpg',hotelName: '北京裕龙御骊酒店', totalPrice: '￥100.00', bookingId: 'A0001', bookingStatus: '待支付' },
-  { imageUrl: 'http://localhost:8088/resources/上海_云和夜泊酒店4.jpg', hotelName: '和颐至尚酒店', totalPrice: '￥200.00', bookingId: 'A0002', bookingStatus: '已支付' },
+  { imageUrl: 'http://121.41.107.127:8088/resources/上海_云和夜泊酒店4.jpg',hotelName: '北京裕龙御骊酒店', totalPrice: '￥100.00', bookingId: 'A0001', bookingStatus: '待支付' },
+  { imageUrl: 'http://121.41.107.127:8088/resources/上海_云和夜泊酒店4.jpg', hotelName: '和颐至尚酒店', totalPrice: '￥200.00', bookingId: 'A0002', bookingStatus: '已支付' },
 ])
 const shouldShowCancelButton = (row) =>{
   return row.status === '待支付';

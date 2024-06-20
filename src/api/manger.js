@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 
-const API_URL = 'http://localhost:8088/hotel';
+const API_URL = 'http://121.41.107.127:8088/hotel';
 
 
 // 酒店id获取酒店名字

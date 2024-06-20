@@ -38,7 +38,7 @@ const router = useRouter();
 const goToHotelDetails = (v) => {
   console.log('廖梓行',v)
   const hotelDataString = encodeURIComponent(JSON.stringify(v));
-  const url = `http://localhost:5173/#/hotel-details?hotelData=${hotelDataString}`;
+  const url = `http://121.41.107.127:5173/#/hotel-details?hotelData=${hotelDataString}`;
   window.open(url, '_blank');
 };
 

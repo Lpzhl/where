@@ -1,7 +1,7 @@
 // src/api/air.js
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8088/air';
+const API_URL = 'http://121.41.107.127:8088/air';
 
 //取消订单
 export const cancelOrde = async (bookingId) => {
@@ -77,3 +77,5 @@ export const searchAir = async (requestData) => {
         throw e;
     }
 };
+
+

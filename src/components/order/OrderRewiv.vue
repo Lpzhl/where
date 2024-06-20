@@ -103,7 +103,7 @@ const uploadImage = async (file) => {
   console.log(reviewId)
 
   try {
-    const response = await axios.post('http://localhost:8088/review/upload', formData, {
+    const response = await axios.post('http://121.41.107.127:8088/review/upload', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -129,7 +129,7 @@ const submitReview = async () => {
   try {
     console.log(reviewData.value.content)
     // 发送非图片内容
-    const reviewResponse = await axios.post('http://localhost:8088/review/createReview', {
+    const reviewResponse = await axios.post('http://121.41.107.127:8088/review/createReview', {
       hotelId: booking.value.hotelId,
       userId: booking.value.userId,
       rating: reviewData.value.rating,

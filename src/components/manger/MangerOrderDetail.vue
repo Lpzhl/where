@@ -193,7 +193,7 @@ const saveOrder = () => {
   console.log('更新之后的表单数据：',orderData.value)
   // 把表单数据发送给后端更新订单信息
   // 发送 POST 请求给后端更新订单信息
-  axios.post('http://localhost:8088/hotel/updateBooking', orderData.value)
+  axios.post('http://121.41.107.127:8088/hotel/updateBooking', orderData.value)
       .then(response => {
         // 处理成功响应
         console.log('订单更新成功', response.data);

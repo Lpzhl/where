@@ -81,13 +81,13 @@ const orderCounts = computed(() => {
 
 const activeIndex = ref('1')
 const allOrderData = ref([
-  { imageUrl: 'http://localhost:8088/resources/上海_云和夜泊酒店4.jpg',hotelName: '北京裕龙御骊酒店', totalPrice: '￥100.00', bookingId: 'A0001', bookingStatus: '待支付' },
-  { imageUrl: 'http://localhost:8088/resources/上海_云和夜泊酒店4.jpg', hotelName: '和颐至尚酒店', totalPrice: '￥200.00', bookingId: 'A0002', bookingStatus: '已支付' },
-  { imageUrl: 'http://localhost:8088/resources/上海_云和夜泊酒店4.jpg',hotelName: '北京京伦饭店', totalPrice: '￥300.00', bookingId: 'A0003', bookingStatus: '待评价' },
-  { imageUrl: 'http://localhost:8088/resources/北京裕龙御骊酒店1.jpg',hotelName: '乐家服务式酒店', totalPrice: '￥400.00', bookingId: 'A0004', bookingStatus: '已过期' },
-  { imageUrl: 'http://localhost:8088/resources/北京裕龙御骊酒店1.jpg', hotelName: '情趣酒店', totalPrice: '￥7700.00', bookingId: 'A0004', bookingStatus: '已过期'},
-  { imageUrl: 'http://localhost:8088/resources/北京裕龙御骊酒店1.jpg',hotelName: '北京远航国际酒店', totalPrice: '￥600.00', bookingId: 'A0004', bookingStatus: '已过期' },
-  { imageUrl: 'http://localhost:8088/resources/北京裕龙御骊酒店1.jpg',hotelName: '王府井永光酒店', totalPrice: '￥500.00', bookingId: 'A0004', bookingStatus: '已过期' },
+  { imageUrl: 'http://121.41.107.127:8088/resources/上海_云和夜泊酒店4.jpg',hotelName: '北京裕龙御骊酒店', totalPrice: '￥100.00', bookingId: 'A0001', bookingStatus: '待支付' },
+  { imageUrl: 'http://121.41.107.127:8088/resources/上海_云和夜泊酒店4.jpg', hotelName: '和颐至尚酒店', totalPrice: '￥200.00', bookingId: 'A0002', bookingStatus: '已支付' },
+  { imageUrl: 'http://121.41.107.127:8088/resources/上海_云和夜泊酒店4.jpg',hotelName: '北京京伦饭店', totalPrice: '￥300.00', bookingId: 'A0003', bookingStatus: '待评价' },
+  { imageUrl: 'http://121.41.107.127:8088/resources/北京裕龙御骊酒店1.jpg',hotelName: '乐家服务式酒店', totalPrice: '￥400.00', bookingId: 'A0004', bookingStatus: '已过期' },
+  { imageUrl: 'http://121.41.107.127:8088/resources/北京裕龙御骊酒店1.jpg', hotelName: '情趣酒店', totalPrice: '￥7700.00', bookingId: 'A0004', bookingStatus: '已过期'},
+  { imageUrl: 'http://121.41.107.127:8088/resources/北京裕龙御骊酒店1.jpg',hotelName: '北京远航国际酒店', totalPrice: '￥600.00', bookingId: 'A0004', bookingStatus: '已过期' },
+  { imageUrl: 'http://121.41.107.127:8088/resources/北京裕龙御骊酒店1.jpg',hotelName: '王府井永光酒店', totalPrice: '￥500.00', bookingId: 'A0004', bookingStatus: '已过期' },
 ])
 
 
@@ -106,7 +106,7 @@ const buy = (row) => {
 const contact = (row) => {
   console.log('联系客服', row);
   const bookingDataString = encodeURIComponent(JSON.stringify(row));
-  const url = `http://localhost:5173/#/chat?booking=${bookingDataString}`;
+  const url = `http://121.41.107.127:5173/#/chat?booking=${bookingDataString}`;
   window.open(url, '_blank');
 };
 

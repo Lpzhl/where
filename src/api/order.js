@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { useUserStore } from '../stores/userStore';
 
-const API_URL = 'http://localhost:8088/user';
+const API_URL = 'http://121.41.107.127:8088/user';
 
 
 // 更新订单信息
