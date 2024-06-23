@@ -135,8 +135,8 @@ const navigateToProfile = () => {
   // 添加导航到用户个人主页的逻辑
   router.push({ path: '/order' });
 };
-if (typeof window === 'undefined') {
-  window.window = window;
+if (typeof global === 'undefined') {
+  window.global = window;
 }
 const logout = () => {
   setUserLoggedOut();
